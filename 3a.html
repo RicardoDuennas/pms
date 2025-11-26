@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Pintando el Mundo que Soñamos :: Recorrido Virtual</title>
+        <link rel="stylesheet" href="css/photo-sphere-viewer.min.css" />
+        <link rel="stylesheet" href="css/markers.css" />
+        <link rel="stylesheet" href="css/estilos.css" />
+    </head>
+
+    <body>
+
+        <div id="viewer"></div>
+
+        <div class="esquina tl"><a href="https://permaculturatequendama.net/pms/"><img src="img/pms_logo.svg" class="img-tl" alt=""></div>
+        <div class="esquina cr"><img src="img/3a_th.jpg" class="img-cr" id="open-lightbox"></div>
+        <div class="esquina bl"><img src="img/logoRPT.svg" class="img-bl" alt=""></div>
+        <div class="esquina br"><img src="img/pms_logos_inst.svg" class="img-br" alt=""></div>
+
+        <div id="lightbox">
+            <img id="lightbox-img">
+        </div>
+
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
+                    "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.module.js",
+                    "@photo-sphere-viewer/markers-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin@5/index.module.js"
+                }
+            }
+        </script>
+
+        <script type="module">
+
+            import { Viewer } from '@photo-sphere-viewer/core';
+            import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
+
+            const viewer = new Viewer({
+                container: document.querySelector('#viewer'),
+                panorama: 'img/pms_3a.jpg',
+                caption: "Nodo 3: <b>La Esperanza</b>, A.",
+                navbar: ['caption', 'fullscreen'],
+                fisheye: true,
+                touchmoveTwoFingers: false,
+                moveInertia: true,
+                loadingImg: 'img/pms_favicon.svg',
+                minFov: 30,
+                maxFov: 120,
+                defaultPitch: 0,
+
+                plugins: 
+                    [
+                        MarkersPlugin.withConfig({
+
+                            markers: [
+
+                                /* 
+                                // Pitch = -Math.PI/2 (nadir)
+                                { id: 'marker_0_0', position: { yaw: 0, pitch: -Math.PI/2 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: 0, Pitch: -Math.PI/2', content: 'Yaw: -Math.PI<br>Pitch: -Math.PI/2' },
+
+                                // // Pitch = -Math.PI/4
+                                { id: 'marker_0_1', position: { yaw: 0, pitch: -Math.PI/4 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: 0, Pitch: -PI/4', content: 'Yaw: 0<br>Pitch: -PI/4' },
+                                { id: 'marker_1_1', position: { yaw: -Math.PI/2, pitch: -Math.PI/4 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: -PI/2, Pitch: -PI/4', content: 'Yaw: -PI/2<br>Pitch: -PI/4' },
+                                { id: 'marker_2_1', position: { yaw: Math.PI/2, pitch: -Math.PI/4 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: PI/2, Pitch: -PI/4', content: 'Yaw: PI/2<br>Pitch: -PI/4' },
+                                { id: 'marker_3_1', position: { yaw: Math.PI, pitch: -Math.PI/4 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: PI, Pitch: -PI/4', content: 'Yaw: PI<br>Pitch: -PI/4' },
+
+                                // // Pitch = 0
+                                { id: 'marker_0_2', position: { yaw: 0, pitch: 0 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: 0, Pitch: 0', content: 'Yaw: 0<br>Pitch: 0' },
+                                { id: 'marker_1_2', position: { yaw: -Math.PI/2, pitch: 0 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: -PI/2, Pitch: 0', content: 'Yaw: -PI/2<br>Pitch: 0' },
+                                { id: 'marker_2_2', position: { yaw: Math.PI/2, pitch: 0 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: PI/2, Pitch: 0', content: 'Yaw: PI/2<br>Pitch: 0' },
+                                { id: 'marker_3_2', position: { yaw: Math.PI, pitch: 0 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: PI, Pitch: 0', content: 'Yaw: PI<br>Pitch: 0' },
+
+                                // // Pitch = Math.PI/4
+                                { id: 'marker_0_3', position: { yaw: 0, pitch: Math.PI/4 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: 0, Pitch: Math.PI/4', content: 'Yaw: 0<br>Pitch: PI/4' },
+                                { id: 'marker_1_3', position: { yaw: -Math.PI/2, pitch: Math.PI/4 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: -PI/2, Pitch: PI/4', content: 'Yaw: -PI/2<br>Pitch: PI/4' },
+                                { id: 'marker_2_3', position: { yaw: Math.PI/2, pitch: Math.PI/4 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: PI/2, Pitch: PI/4', content: 'Yaw: PI/2<br>Pitch: PI/4' },
+                                { id: 'marker_3_3', position: { yaw: Math.PI, pitch: Math.PI/4 }, image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', size: { width: 100, height: 116 }, anchor: 'bottom center', zoomLvl: 100, tooltip: 'Yaw: PI, Pitch: PI/4', content: 'Yaw: PI<br>Pitch: PI/4' },
+
+                                // // Pitch = Math.PI/2 (zenith)
+                                { 
+                                    id: 'marker_0_4', 
+                                    position: { yaw: -Math.PI, pitch: Math.PI/2 }, 
+                                    image: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', 
+                                    size: { width: 100, height: 116 }, 
+                                    anchor: 'bottom center', 
+                                    zoomLvl: 100, 
+                                    tooltip: {
+                                        content: 'Yaw: -PI, Pitch: PI/2<br/><b>Campo Elías Díaz</b>',
+                                        position: 'right',                                       
+                                    },
+                                },
+
+
+ */
+                                
+                            ],
+                        }),          
+                    ],
+                });
+
+        </script>
+
+        <script>
+            const openBtn = document.getElementById('open-lightbox');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+
+            openBtn.addEventListener('click', () => {
+                lightboxImg.src = openBtn.src; 
+                lightbox.style.display = 'flex';
+            });
+
+            // close when clicking the overlay
+            lightbox.addEventListener('click', () => {
+                lightbox.style.display = 'none';
+            });
+        </script>
+
+    </body>
+</html>
