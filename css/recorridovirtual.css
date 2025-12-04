@@ -139,7 +139,7 @@ body {
 .psv-navbar {
 
   background: linear-gradient(to right, rgba(15,57,95,0) 50%,rgba(15,57,95,1) 100%); 
-// background:  #0f395fee;
+/* // background:  #0f395fee; */
   z-index: 90;
   top: -40px;
   left: 0;

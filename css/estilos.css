@@ -236,3 +236,45 @@ p { margin-top: 0; margin-bottom: .9rem; }
 
 }
 
+/* Full-screen dimmed background */
+#modal {
+    display: none;                  /* initially hidden */
+    position: fixed;
+    inset: 0;                       /* top:0; left:0; right:0; bottom:0 */
+    background: rgba(0, 0, 0, 0.7); /* dark overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;                  /* on top of everything */
+    cursor: pointer;
+  }
+
+/* Square modal content */
+#modal-content {
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 12px;
+    /* width: 80vmin;   
+    height: 80hmin;   */
+    box-shadow: 0 0 20px black;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.modal-scroll {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  color: gray;
+}
+
+.modal-scroll img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 15px 0;
+}
