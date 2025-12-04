@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/markers.css" />
         <link rel="stylesheet" href="css/estilos.css" />
         <link rel="stylesheet" href="css/recorridovirtual.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">    
     </head>
 
     <body>
@@ -15,12 +16,67 @@
         <div id="viewer"></div>
 
         <div class="esquina tl"><a href="https://permaculturatequendama.net/pms/"><img src="imas/PMS_logo.svg" class="img-tl" alt=""></a></div>
-        <div class="esquina cr"><img src="imas/04c_th.jpg" class="img-cr" id="open-lightbox"></div>
+        <div class="esquina cr">
+            <i class="bi bi-info-circle" id="open-modal" style="font-size: 2rem; color: white; cursor: pointer;"></i></i>
+        </div>
         <div class="esquina bl"><img src="imas/logoRPT.svg" class="img-bl" alt=""></div>
         <div class="esquina br"><img src="imas/pms_logos_inst.svg" class="img-br" alt=""></div>
 
-        <div id="lightbox">
-            <img id="lightbox-img">
+        <div id="modal">
+            <div id="modal-content">
+                <div class="modal-scroll">
+
+                    <h1>Main Title</h1>
+
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Donec vel libero at lectus rutrum vestibulum vitae ut turpis. 
+                        Integer non massa non tortor feugiat placerat.
+                    </p>
+
+                    <h2>Section Title</h2>
+
+                    <p>
+                        Cras sed ligula efficitur, ullamcorper arcu non, facilisis massa. 
+                        Mauris bibendum viverra nulla, sit amet placerat ipsum commodo et.
+                    </p>
+
+                    <img src="https://placehold.co/600x300" alt="Sample image" />
+
+                    <h3>Subsection</h3>
+
+                    <p>
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem 
+                        accusantium doloremque laudantium, totam rem aperiam.
+                    </p>
+
+                    <img src="https://placehold.co/500x400" alt="Another sample image" />
+
+                    <p>
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui 
+                        blanditiis praesentium voluptatum deleniti atque corrupti.
+                    </p>
+                    <img src="https://placehold.co/500x400" alt="Another sample image" />
+
+                    <p>
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui 
+                        blanditiis praesentium voluptatum deleniti atque corrupti.
+                    </p>
+                    <img src="https://placehold.co/500x400" alt="Another sample image" />
+
+                    <p>
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui 
+                        blanditiis praesentium voluptatum deleniti atque corrupti.
+                    </p>
+                    <img src="https://placehold.co/500x400" alt="Another sample image" />
+
+                    <p>
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui 
+                        blanditiis praesentium voluptatum deleniti atque corrupti.
+                    </p>
+
+                </div>
+            </div>
         </div>
 
         <script type="importmap">
@@ -104,20 +160,27 @@
         </script>
 
         <script>
-            const openBtn = document.getElementById('open-lightbox');
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
+            const openBtn = document.getElementById('open-modal');
+            const modal = document.getElementById('modal');
+            const infoDiv = document.getElementById('modal-content');
 
             openBtn.addEventListener('click', () => {
-                lightboxImg.src = openBtn.src; 
-                lightbox.style.display = 'flex';
+                modal.style.display = 'flex';
             });
 
-            // close when clicking the overlay
-            lightbox.addEventListener('click', () => {
-                lightbox.style.display = 'none';
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape") {
+                    modal.style.display = 'none';
+                }
             });
         </script>
+
 
     </body>
 </html>
